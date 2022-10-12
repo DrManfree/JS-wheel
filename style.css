@@ -1,5 +1,6 @@
 html {
-    background: linear-gradient(180deg, rgba(94,0,0,1) 0%, rgba(171,0,0,1) 50%, rgba(0,0,0,1) 100%) no-repeat;
+    height: 100vh;
+    overflow: hidden;
 }
 * {
     padding: 0;
@@ -12,14 +13,20 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
+    background: linear-gradient(180deg, rgba(94,0,0,1) 0%, rgba(171,0,0,1) 50%, rgba(0,0,0,1) 100%) no-repeat;
+}
+.omegafire{
+    width: 100vw;
+    height: 100%;
+    position: absolute;
     background: url("fire.gif") no-repeat;
+    background-size: 100%; 
     background-position-y: bottom;
-    background-size: 100%;
 }
 h1 {
     text-align: center;
-    font-size: 70px;
+    font-size: 10vw;
     background: -webkit-linear-gradient(rgb(127, 66, 0), rgb(255, 166, 0));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -33,10 +40,14 @@ input {
 .wrapper {
     position: relative;
     background-color: #00000041;
-    width: 500px;
-    height: 500px;
+    width: 90vw;
+    height: 90vw;
+    max-width: 600px;
+    max-height: 600px;
     margin: 0 auto;
-    border-radius: 50px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
 }
 
 .wrapper svg {
@@ -47,8 +58,8 @@ input {
 
 .wrapper button {
     position: absolute;
-    left: 210px;
-    top: 210px;
+    left: calc(50% - 40px);
+    top: calc(50% - 40px);
     z-index: 1001;
     width: 80px;
     height: 80px;

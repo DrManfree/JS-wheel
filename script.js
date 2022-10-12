@@ -1,8 +1,12 @@
-let SIZE = 500;
+let SIZE = document.querySelector(".wrapper").offsetWidth;
 let SECTOR_COUNT = 4;
 let input = document.getElementById("input-sectors");
 input.addEventListener("change", (event) => {
     SECTOR_COUNT = +event.target.value;
+    drawWheel(SIZE, SECTOR_COUNT);
+});
+window.addEventListener('resize', (event) => {
+    let SIZE = document.querySelector(".wrapper").offsetWidth;
     drawWheel(SIZE, SECTOR_COUNT);
 });
 const TO_RADIAN = Math.PI / 180;
