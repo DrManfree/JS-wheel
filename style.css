@@ -1,5 +1,7 @@
 :root {
     --random-degree: 360deg;
+    --spin-time: 30s;
+    --sector-text-size: 1em;
 }
 html {
     height: 100vh;
@@ -110,7 +112,7 @@ input {
         transform: rotate(0deg);
     }
     100% {
-        transform: rotate(360deg);
+        transform: rotate(-360deg);
     }
 }
 @keyframes hardbass {
@@ -138,8 +140,8 @@ input {
 .spin {
     animation-name: daspin;
     animation-fill-mode: both;
-    animation-timing-function: cubic-bezier(.15,1,.25,1);
-    animation-duration: 30s;
+    animation-timing-function: cubic-bezier(0,1,0,1);
+    animation-duration: var(--spin-time);
 }
 
 @keyframes daspin {
@@ -179,27 +181,34 @@ input {
     text-align: center;
     font-size: 3vw;
 }
-.deciding {   
+.deciding {
     background: -webkit-linear-gradient(rgb(127, 66, 0), rgb(255, 166, 0));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.linear-wipe {   
+.linear-wipe {
     background: -webkit-linear-gradient(rgb(255, 255, 255), rgb(255, 229, 32));
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; 
+    -webkit-text-fill-color: transparent;
     animation: shine 0.4s linear infinite;
-  }
-  @keyframes shine {
+}
+
+@keyframes shine {
     0% {
         background: -webkit-linear-gradient(rgb(255, 255, 255), rgb(255, 229, 32));
         -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent; 
+        -webkit-text-fill-color: transparent;
     }
+
     100% {
         background: -webkit-linear-gradient(rgb(255, 0, 0), rgb(255, 255, 255));
         -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent; 
+        -webkit-text-fill-color: transparent;
     }
-  }
+}
+.sector-text {
+    font-weight: 800;
+    font-size: var(--sector-text-size);
+    user-select: none;
+}
