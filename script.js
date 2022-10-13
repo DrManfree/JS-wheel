@@ -149,7 +149,7 @@ function spinWheel() {
     // Do an additional degree of spinning to reach the start of the winning sector
     let additionalDegree = angle * (winningSector - 1);
     // Do a random degree of spinning within the winning sector
-    let randomDegree = Math.floor(Math.random() * angle);
+    let randomDegree = Math.random() * angle;
     // The resulting amount of degrees to spin
     let fullSpin = (alwaysSpin + additionalSpins) * 360 + additionalDegree + randomDegree;
 
@@ -165,7 +165,8 @@ function spinWheel() {
                                 arrowCoords.top + (arrowCoords.bottom - arrowCoords.top) / 2];
         let element = document.elementsFromPoint(...pointingCoords).find(el => el.id.startsWith('sector-'));
         console.log("Winning sector is", winningSector, "found element", element.id);
-        console.log("sector angle is", angle, "span additional", additionalDegree, "from 0");
+        console.log("sector angle is", angle, "span additional", winningSector - 1, "*", angle, "=", additionalDegree, "from 0");
+        console.log("span", randomDegree, "in winning sector");
         console.log("span total",(360 * 10 + additionalSpins * 360 + additionalDegree), "degrees");
         winnerText.textContent = `WINNER IS ${element.getAttribute("fill").toUpperCase()}`;
         winnerText.classList.remove("deciding");
