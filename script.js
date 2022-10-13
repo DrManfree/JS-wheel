@@ -131,21 +131,29 @@ function drawWheel(size, count = 1) {
 }
 
 function spinWheel() {
-    // Clean-up
+    // Clean-up and preparation
     winnerText.textContent = "DECIDE THE WINNER";
     winnerText.classList.remove("linear-wipe");
     winnerText.classList.add("deciding");
     spinBtn.classList.add("btn-disappear");
     input.setAttribute('disabled', true);
-
     let dawheel = document.getElementById("wheel-svg");
-    
-    let additionalSpins = Math.floor(Math.random() * 10);
-    let winningSector = Math.floor(Math.random() * SECTOR_COUNT) + 1;
     let angle = 360 / SECTOR_COUNT;
-    let additionalDegree = angle * (winningSector - 1) + Math.floor(Math.random() * angle);
-    document.documentElement.style.setProperty('--random-degree', 
-    `${-1 * (360 * 10 + additionalSpins * 360 + additionalDegree)}deg`);
+
+    // Determine the winning sector before calculating the resulting angle
+    let winningSector = Math.floor(Math.random() * SECTOR_COUNT) + 1;
+    // Always do a determined amount of full spins
+    let alwaysSpin = 10;
+    // Do an additional random amount of full spins from 0 to 10
+    let additionalSpins = Math.floor(Math.random() * 11);
+    // Do an additional degree of spinning to reach the start of the winning sector
+    let additionalDegree = angle * (winningSector - 1);
+    // Do a random degree of spinning within the winning sector
+    let randomDegree = Math.floor(Math.random() * angle);
+    // The resulting amount of degrees to spin
+    let fullSpin = (alwaysSpin + additionalSpins) * 360 + additionalDegree + randomDegree;
+
+    document.documentElement.style.setProperty('--random-degree', `${-1 * fullSpin}deg`);
     dawheel.classList.remove("idling");
     dawheel.classList.add("spin");
 
