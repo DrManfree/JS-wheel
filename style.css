@@ -1,6 +1,18 @@
+:root {
+    --random-degree: 360deg;
+}
 html {
     height: 100vh;
     overflow: hidden;
+}
+main {
+    display: flex;
+    flex-direction: row;
+    margin-top: 45px;
+    align-items: stretch;
+    justify-content: center;
+    gap: 3vw;
+    padding: 0 10px;
 }
 * {
     padding: 0;
@@ -11,12 +23,11 @@ html {
 
 body {
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
     background: linear-gradient(180deg, rgba(94,0,0,1) 0%, rgba(171,0,0,1) 50%, rgba(0,0,0,1) 100%) no-repeat;
 }
 .omegafire{
+    left:0;
+    bottom: 0;
     width: 100vw;
     height: 100%;
     position: absolute;
@@ -33,9 +44,9 @@ h1 {
 }
 input {
     margin: 0 auto;
-    height: 50px;
+    height: 5vw;
     padding: 0;
-    font-size: 30px;
+    font-size: 3vw;
     z-index: 1001;
 }
 .wrapper {
@@ -47,18 +58,35 @@ input {
     max-height: 500px;
     min-height: 200px;
     min-width: 200px;
-    margin: 0 auto;
     border-radius: 20px;
     margin-bottom: 20px;
     overflow: hidden;
 }
-
-.wrapper svg {
+@media screen and (max-width: 740px) {
+    main {
+        flex-direction: column;
+        margin-top: 20px;
+        gap: 20px;
+        margin-bottom: 20px;
+        align-items: center;
+    }
+    .controls {
+        gap: 20px;
+    }
+}
+.wrapper #wheel-svg {
     width: 100%;
     height: 100%;
-    animation: 10s linear infinite both idle;
 }
-
+.idling {
+    animation: linear infinite both idle;
+    animation-duration: 10s;
+}
+.wrapper .arrow {
+    position: absolute;
+    left: calc(50% - 25px);
+    z-index: 1001;
+}
 .wrapper button {
     position: absolute;
     left: calc(50% - 40px);
@@ -69,11 +97,12 @@ input {
     border: 5px solid black;
     border-radius: 50%;
     font-weight: 600;
+    user-select: none;
 }
-.wrapper button:hover {
+.wrapper button:hover:not(.btn-disappear) {
     animation: 0.5s linear infinite both hardbass;
 }
-.wrapper button:hover + svg {
+.wrapper button:hover:not(.btn-disappear) + #wheel-svg {
     animation-duration: 0.25s;
 }
 @keyframes idle {
@@ -105,3 +134,72 @@ input {
         transform: scale(1);
     }
 }
+
+.spin {
+    animation-name: daspin;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(.15,1,.25,1);
+    animation-duration: 30s;
+}
+
+@keyframes daspin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(var(--random-degree));
+    }
+}
+
+.btn-disappear {
+    animation-name: peaceout;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+    animation-duration: 1s;
+}
+
+@keyframes peaceout {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(4);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#winner {
+    text-align: center;
+    font-size: 3vw;
+}
+.deciding {   
+    background: -webkit-linear-gradient(rgb(127, 66, 0), rgb(255, 166, 0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.linear-wipe {   
+    background: -webkit-linear-gradient(rgb(255, 255, 255), rgb(255, 229, 32));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    animation: shine 0.4s linear infinite;
+  }
+  @keyframes shine {
+    0% {
+        background: -webkit-linear-gradient(rgb(255, 255, 255), rgb(255, 229, 32));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; 
+    }
+    100% {
+        background: -webkit-linear-gradient(rgb(255, 0, 0), rgb(255, 255, 255));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; 
+    }
+  }

@@ -8,11 +8,19 @@
   </head>
   <body>
     <h1>GIGA WHEEL OF HELL</h1>
-    <input id="input-sectors" type="number" value="4" min="1" max="20">
+    <main>
+    <div class="controls">
+      <h3 id="winner" class="deciding">DECIDE THE WINNER</h3>
+      <input id="input-sectors" type="number" value="4" min="1" max="20">
+    </div>
     <!-- Wrapper box -->
     <div class="wrapper">
-        <button>SPIN DA WHEEL</button>
+      <svg class="arrow" width="50" height="50">
+        <path d="M0,0 L50,0 L25,50 L0,0" fill="black"></path>
+      </svg>
+      <button id="daspin">SPIN DA WHEEL</button>
     </div>
+    </main>
     <div class="omegafire">
     </div>
     <!-- Script -->
